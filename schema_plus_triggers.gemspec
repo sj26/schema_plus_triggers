@@ -1,4 +1,5 @@
-# coding: utf-8
+# frozen_string_literal: true
+
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'schema_plus/triggers/version'
@@ -8,8 +9,8 @@ Gem::Specification.new do |gem|
   gem.version       = SchemaPlus::Triggers::VERSION
   gem.authors       = ["Edward Rudd"]
   gem.email         = ["urkle@outoforder.cc"]
-  gem.summary       = %q{TODO: Write a short summary. Required.}
-  gem.description   = %q{TODO: Write a longer description. Optional.}
+  gem.summary       = %q{Adds support for triggers in ActiveRecord}
+  gem.description   = %q{Adds support for triggers in ActiveRecord}
   gem.homepage      = "https://github.com/SchemaPlus/schema_plus_triggers"
   gem.license       = "MIT"
 
@@ -18,13 +19,14 @@ Gem::Specification.new do |gem|
   gem.test_files    = gem.files.grep(%r{^(test|spec|features)/})
   gem.require_paths = ["lib"]
 
-  gem.add_dependency "activerecord", "~> 4.2"
+  gem.add_dependency "activerecord", ">= 5.2", '< 5.3'
   gem.add_dependency "schema_plus_core", "~> 2.2", ">= 2.2.3"
 
-  gem.add_development_dependency "bundler", "~> 1.7"
+  gem.add_development_dependency "bundler"
   gem.add_development_dependency "rake", "~> 10.0"
   gem.add_development_dependency "rspec", "~> 3.0"
   gem.add_development_dependency "schema_dev", "~> 3.11", ">= 3.11.1"
+  gem.add_development_dependency "schema_plus_compatibility", "~> 0.2"
   gem.add_development_dependency "simplecov"
   gem.add_development_dependency "simplecov-gem-profile"
 end
