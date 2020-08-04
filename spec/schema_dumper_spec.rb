@@ -33,7 +33,7 @@ $$
 
   after do
     apply_migration do
-      execute 'DROP FUNCTION my_trigger_func CASCADE'
+      execute 'DROP FUNCTION my_trigger_func() CASCADE'
     end
   end
 
