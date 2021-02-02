@@ -76,7 +76,8 @@ This will return an array of arrays. The inner array containing the table name a
 
 ## History
 
-* 0.1.0 - Initial release
+* **0.2.0** - Add testing for multiple PostgreSQL versions
+* **0.1.0** - Initial release
 
 ## Development & Testing
 
