@@ -45,7 +45,7 @@ $$
     dump_schema.tap do |dump|
       expect(dump).to match(/create_trigger.+user.+log_trigger.+after insert/i)
 
-      expect(dump).to match(/for each row.+my_trigger_func/i)
+      expect(dump).to match(/for each row execute (function|procedure).+my_trigger_func/i)
     end
     
   end
