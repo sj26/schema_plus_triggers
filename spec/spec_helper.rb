@@ -1,8 +1,7 @@
 # frozen_string_literal: true
 
 require 'simplecov'
-require 'simplecov-gem-profile'
-SimpleCov.start "gem"
+SimpleCov.start
 
 $LOAD_PATH.unshift(File.dirname(__FILE__))
 $LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
@@ -10,7 +9,6 @@ $LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
 require 'rspec'
 require 'active_record'
 require 'schema_plus_triggers'
-require 'schema_plus_compatibility'
 require 'schema_dev/rspec'
 
 SchemaDev::Rspec.setup
@@ -24,7 +22,7 @@ RSpec.configure do |config|
       begin
         example.run
       ensure
-        ActiveRecord::Base.connection.tables_only.each do |table|
+        ActiveRecord::Base.connection.tables.each do |table|
           ActiveRecord::Migration.drop_table table, force: :cascade
         end
       end
@@ -35,7 +33,7 @@ end
 def define_schema(config = {}, &block)
   ActiveRecord::Migration.suppress_messages do
     ActiveRecord::Schema.define do
-      ActiveRecord::Base.connection.tables_only.each do |table|
+      ActiveRecord::Base.connection.tables.each do |table|
         ActiveRecord::Migration.drop_table table, force: :cascade
       end
       instance_eval &block
